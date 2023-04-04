@@ -1,38 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Gene Analysis App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gene Survival Analysis</title>
+    <link rel="stylesheet" href="/static/css/main.css">
 </head>
 <body>
-    <h1>Gene Analysis App</h1>
-    <form action="/analyze" method="POST">
-        <!-- Group 1 input fields -->
-        <h3>Group 1 Conditions</h3>
-        <label for="group1_erbb2_min">ERBB2 Min:</label>
-        <input type="number" name="group1_erbb2_min" required>
-        <label for="group1_erbb2_max">ERBB2 Max:</label>
-        <input type="number" name="group1_erbb2_max" required>
-        <br>
-        <label for="group1_pik3ca_min">PIK3CA Min:</label>
-        <input type="number" name="group1_pik3ca_min" required>
-        <label for="group1_pik3ca_max">PIK3CA Max:</label>
-        <input type="number" name="group1_pik3ca_max" required>
-        <br><br>
-        <!-- Group 2 input fields -->
-        <h3>Group 2 Conditions</h3>
-        <label for="group2_erbb2_min">ERBB2 Min:</label>
-        <input type="number" name="group2_erbb2_min" required>
-        <label for="group2_erbb2_max">ERBB2 Max:</label>
-        <input type="number" name="group2_erbb2_max" required>
-        <br>
-        <label for="group2_pik3ca_min">PIK3CA Min:</label>
-        <input type="number" name="group2_pik3ca_min" required>
-        <label for="group2_pik3ca_max">PIK3CA Max:</label>
-        <input type="number" name="group2_pik3ca_max" required>
-        <br><br>
-        <!-- Submit button -->
-        <input type="submit" value="Analyze">
-    </form>
+    <div class="container">
+        <div class="input-form">
+            <form action="/" method="POST">
+                <label for="group1_conditions">Group 1 conditions:</label>
+                <input type="text" name="group1_conditions" id="group1_conditions" required>
+                <label for="group2_conditions">Group 2 conditions:</label>
+                <input type="text" name="group2_conditions" id="group2_conditions" required>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        <div class="output">
+            {% if plot_url %}
+                <img src="data:image/png;base64,{{ plot_url }}" alt="Kaplan-Meier plot">
+            {% endif %}
+        </div>
+    </div>
 </body>
 </html>
-        
